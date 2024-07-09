@@ -25,8 +25,67 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const createBooking = createAsyncThunk(
+  "auth/create-booking",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.createABooking(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteBooking = createAsyncThunk(
+  "auth/delete-booking",
+  async (id, thunkAPI) => {
+    try {
+      return await authService.deleteABooking(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const updateBooking = createAsyncThunk(
+  "auth/update-booking",
+  async (data, thunkAPI) => {
+    try {
+      return await authService.updateABooking(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteAllBookings = createAsyncThunk(
+  "auth/delete-all-bookings",
+  async (thunkAPI) => {
+    try {
+      return await authService.delAllBookings();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getAUser = createAsyncThunk(
+  "auth/get-user",
+  async (thunkAPI) => {
+    try {
+      return await authService.getUser();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+const getCustomerfromLocalStorage = localStorage.getItem("customer")
+  ? JSON.parse(localStorage.getItem("customer"))
+  : null;
+
 const initialState = {
-  user: null,
+  user: getCustomerfromLocalStorage,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -79,6 +138,106 @@ export const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = "Invalid Credentials";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(createBooking.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createBooking.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.createdBooking = action.payload;
+        if (state.isSuccess === true) {
+          toast.success("Room Reserved Successfully!");
+        }
+      })
+      .addCase(createBooking.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(deleteBooking.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteBooking.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        if (state.isSuccess === true) {
+          toast.info("Booking Cancelled Successfully!");
+        }
+      })
+      .addCase(deleteBooking.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(updateBooking.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateBooking.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.updatedBooking = action.payload;
+        if (state.isSuccess === true) {
+          toast.success("Reservation Updated Successfully!");
+        }
+      })
+      .addCase(updateBooking.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(deleteAllBookings.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAllBookings.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        if (state.isSuccess === true) {
+          toast.info("All Reservations Cancelled!");
+        }
+      })
+      .addCase(deleteAllBookings.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(getAUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.customer = action.payload;
+      })
+      .addCase(getAUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
         if (state.isError === true) {
           toast.error(state.message);
         }

@@ -7,7 +7,7 @@ import CustomInput from "../components/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/auth/authSlice";
+import { getAUser, loginUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginSchema = yup.object({

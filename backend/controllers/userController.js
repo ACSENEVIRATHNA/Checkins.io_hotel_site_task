@@ -18,7 +18,7 @@ const createUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ email: email }).populate("bookings");
   if (user && (await user.isPasswordMatched(password))) {
     const token = generateToken(user._id);
     res.cookie("Checkins_Token", token, {
@@ -32,6 +32,8 @@ const loginUser = asyncHandler(async (req, res) => {
       lastName: user?.lastName,
       email: user?.email,
       token: generateToken(user?._id),
+      mobile: user?.mobile,
+      bookings: user?.bookings,
     });
   } else {
     res.status(401);
@@ -39,32 +41,57 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-const getUser = asyncHandler(async (req, res) => {
-    const { _id } = req.user;
-  
-    validateMongoDbId(_id);
-  
-    try {
-      const user = await User.findById(_id).populate("bookings");
-  
-      if (!user) {
-        res.status(404);
-        throw new Error("User not found");
-      }
-  
-      res.json({
-        _id: user._id,
-        userName: user.userName,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        mobile: user.mobile,
-        bookings: user.bookings,
-      });
-    } catch (error) {
-      throw new Error(error);
+const logoutUser = asyncHandler(async (req, res) => {
+  const cookie = req.cookies;
+  if (!cookie?.refreshToken) throw new Error("No refresh token in cookies.");
+  const refreshToken = cookie.refreshToken;
+  const user = await User.findOne({ refreshToken });
+  if (!user) {
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+    });
+    return res.sendStatus(204);
+  }
+  await User.findOneAndUpdate(
+    { refreshToken },
+    {
+      refreshToken: "",
     }
+  );
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: true,
   });
+  res.sendStatus(204);
+});
+
+const getUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+
+  validateMongoDbId(_id);
+
+  try {
+    const user = await User.findById(_id).populate("bookings");
+
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found");
+    }
+
+    res.json({
+      _id: user._id,
+      userName: user.userName,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      mobile: user.mobile,
+      bookings: user.bookings,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 const createBooking = asyncHandler(async (req, res) => {
   const { checkinDate, checkoutDate, price, hotelId } = req.body;
@@ -171,5 +198,6 @@ module.exports = {
   getUserBookings,
   deleteSingleBooking,
   updateBooking,
-  getUser
+  getUser,
+  logoutUser
 };

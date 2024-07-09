@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { HiSearchCircle } from "react-icons/hi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IoLogOut } from "react-icons/io5";
 
 const Header = () => {
   const [checkinDate, setCheckinDate] = useState(null);
   const [checkoutDate, setCheckoutDate] = useState(null);
-  console.log(checkinDate);
+  const userState = useSelector((state) => state?.auth?.user);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="container-fluid header-wrapper">
@@ -22,10 +31,18 @@ const Header = () => {
             </div>
             <div className="col-5"></div>
             <div className="col-4 d-flex  align-items-center justify-content-center">
-              <button className="login-btn">
-                <FaUser />
-                Log in Or Register
-              </button>
+              {!userState && (
+                <Link to="/login" className="login-btn">
+                  <FaUser />
+                  Log in Or Register
+                </Link>
+              )}
+              {userState && (
+                <button onClick={handleLogout} className="login-btn">
+                  <IoLogOut />
+                  Logout
+                </button>
+              )}
             </div>
           </div>
           <div className="bottom-header d-flex justify-content-center col-12 py-2">

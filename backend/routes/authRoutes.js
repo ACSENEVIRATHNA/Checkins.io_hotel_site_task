@@ -9,6 +9,7 @@ const {
   deleteSingleBooking,
   updateBooking,
   getUser,
+  logoutUser
 } = require("../controllers/userController");
 const router = express.Router();
 
