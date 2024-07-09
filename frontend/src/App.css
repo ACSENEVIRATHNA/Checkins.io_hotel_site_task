@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  font-size: 10px;
+}
+
+.fs-40 {
+  font-size: 30px;
+}
+h6 {
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.content {
+  flex: 1;
+}
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.button{
+  text-decoration: none;
+}
+/* ======================= Header =============================*/
+
+.header-wrapper {
+  /* background-image: url("../../frontend/public/images/banner.png");
+  background-size:cover;
+  background-position: top; 
+  background-repeat: no-repeat; */
+  border-bottom: 1px solid #b0b3b5;
+}
+
+.login-btn {
+  border: 2px black solid;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  font-size: 8px;
+}
+
+.search-wrapper {
+  width: 500px;
+  padding: 5px;
+  background-color: #e3e4e6;
+  border-radius: 40px;
+  font-size: 8px;
+}
+
+.filter-inputs {
+  border: none;
+  background-color: transparent;
+}
+
+.filter-inputs:focus {
+  border: none;
+  outline: none;
+}
+
+.end-border-line {
+  border-right: 1px solid #b0b3b5;
+}
+
+.search-btn {
+  border: none;
+  background-color: transparent;
+}
+
+/*=================Header ends herer =============*/
+.footer-wrapper {
+  text-align: center;
+}
+
+/*===========footer ends here===========*/
+
+/*=====================hotel card=================*/
+.card-wrapper {
+  background-color: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  height: 300px;
+  width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.img-wrapper {
+  height: 40%;
+}
+
+.booking-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #3483eb;
+  padding: 0px 5px;
+  height: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+/*================ hotel card ends here===============*/
+
+/*==================login page ====================*/
+.auth-card {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  width: 500px;
+}
+
+.auth-card h3 {
+  font-size: 19px;
+  font-weight: 500;
+  color: #777777;
+}
+
+.auth-card .form-control {
+  height: 50px;
+  background-color: #f5f5f7;
+  color: #777777;
+  font-size: 14px;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+.auth-card a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1c1c1b;
+}
+
+.auth-card .signup {
+  background-color: #febd69;
+  color: #131921;
+}
+
+.auth-card button , .auth-card .signup{
+  font-size: 15px;
+  width: 80px;
+  text-align: center;
+}
+
+.auth-card .signup:hover {
+  background-color: #131921;
+  color: white;
+}
+
+.auth-card p {
+  font-size: 13px;
+  color: #777777;
+}
