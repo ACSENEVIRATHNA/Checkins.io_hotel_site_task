@@ -17,10 +17,10 @@ var userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    bookings: {
-      type: Array,
-      default: [],
-    },
+    bookings: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Booking", 
+    }],
     firstName: {
       type: String,
     },

@@ -39,6 +39,33 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+const getUser = asyncHandler(async (req, res) => {
+    const { _id } = req.user;
+  
+    validateMongoDbId(_id);
+  
+    try {
+      const user = await User.findById(_id).populate("bookings");
+  
+      if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+      }
+  
+      res.json({
+        _id: user._id,
+        userName: user.userName,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        mobile: user.mobile,
+        bookings: user.bookings,
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
 const createBooking = asyncHandler(async (req, res) => {
   const { checkinDate, checkoutDate, price, hotelId } = req.body;
   const { _id } = req.user;
@@ -53,22 +80,96 @@ const createBooking = asyncHandler(async (req, res) => {
       price,
       hotelId,
     }).save();
+    await User.findByIdAndUpdate(_id, { $push: { bookings: newBooking._id } });
     res.json(newBooking);
   } catch (error) {
     throw new Error(error);
   }
 });
 
-const deleteAllBookings = asyncHandler(async (req, res) => {
-    const { _id } = req.user;
-    validateMongoDbId(_id);
-    try {
-      const user = await User.findOne({ _id });
-      const bookings = await Booking.findOneAndDelete({ userId: user._id });
-      res.json(bookings);
-    } catch (error) {
-      throw new Error(error);
-    }
-  });
+const getUserBookings = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const bookings = await Booking.find({ userId: _id }).populate("userId");
+    res.json(bookings);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
-module.exports = { createUser, loginUser, createBooking ,deleteAllBookings};
+const deleteAllBookings = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const user = await User.findOne({ _id });
+    const bookings = await Booking.deleteMany({ userId: user._id });
+    await User.findByIdAndUpdate(_id, { $set: { bookings: [] } });
+    res.json({ message: "All Bookings deleted successfully!", bookings });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const deleteSingleBooking = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { bookingId } = req.body;
+  validateMongoDbId(_id);
+  try {
+    const deletedBooking = await Booking.deleteOne({
+      userId: _id,
+      _id: bookingId,
+    });
+    if (!deletedBooking) {
+      res.status(404);
+      throw new Error(
+        "Booking not found or you are not authorized to delete this booking"
+      );
+    }
+    await User.findByIdAndUpdate(_id, { $pull: { bookings: bookingId } });
+    res.json({ message: "Booking deleted successfully!", deletedBooking });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const updateBooking = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { bookingId } = req.body;
+  const { checkinDate, checkoutDate, price, hotelId } = req.body;
+
+  validateMongoDbId(_id);
+  validateMongoDbId(bookingId);
+
+  try {
+    const booking = await Booking.findOne({ _id: bookingId, userId: _id });
+
+    if (!booking) {
+      res.status(404);
+      throw new Error(
+        "Booking not found or you are not authorized to update this booking"
+      );
+    }
+
+    booking.checkinDate = checkinDate || booking.checkinDate;
+    booking.checkoutDate = checkoutDate || booking.checkoutDate;
+    booking.price = price || booking.price;
+    booking.hotelId = hotelId || booking.hotelId;
+
+    const updatedBooking = await booking.save();
+    res.json({ message: "Booking updated successfully!", updatedBooking });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+module.exports = {
+  createUser,
+  loginUser,
+  createBooking,
+  deleteAllBookings,
+  getUserBookings,
+  deleteSingleBooking,
+  updateBooking,
+  getUser
+};
