@@ -18,7 +18,7 @@ router.post("/login", loginUser);
 router.post("/create-booking", authMiddleware, createBooking);
 router.delete("/delete-all-bookings", authMiddleware, deleteAllBookings);
 router.get("/get-bookings", authMiddleware, getUserBookings);
-router.delete("/delete-booking", authMiddleware, deleteSingleBooking);
+router.delete("/delete-booking/:id", authMiddleware, deleteSingleBooking);
 router.put("/update-booking", authMiddleware, updateBooking);
 router.put("/update-booking", authMiddleware, updateBooking);
 router.get("/get-user", authMiddleware, getUser);

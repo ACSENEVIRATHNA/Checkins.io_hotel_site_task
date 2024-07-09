@@ -5,10 +5,13 @@ import { FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createBooking } from "../features/auth/authSlice";
+import { format ,differenceInDays} from "date-fns";
 
 const Room = (props) => {
   const { item, checkinDate, checkoutDate , hotelId , hotelName } = props;
   const dispatch = useDispatch();
+  const totalPrice = item?.price * differenceInDays(new Date(checkoutDate) , new Date(checkinDate))
+
   const handleReservation = () => {
     dispatch(
       createBooking({
@@ -17,6 +20,8 @@ const Room = (props) => {
         price: item?.price,
         hotelId: hotelId,
         hotelName: hotelName,
+        roomName: item?.name,
+        totalPrice: totalPrice
       })
     );
   };

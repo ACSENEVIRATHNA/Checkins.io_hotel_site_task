@@ -94,7 +94,7 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 const createBooking = asyncHandler(async (req, res) => {
-  const { checkinDate, checkoutDate, price, hotelId ,hotelName} = req.body;
+  const { checkinDate, checkoutDate, price, hotelId ,hotelName , roomName , totalPrice} = req.body;
   const { _id } = req.user;
 
   validateMongoDbId(_id);
@@ -106,7 +106,9 @@ const createBooking = asyncHandler(async (req, res) => {
       checkoutDate,
       price,
       hotelId,
-      hotelName
+      hotelName,
+      roomName,
+      totalPrice
     }).save();
     await User.findByIdAndUpdate(_id, { $push: { bookings: newBooking._id } });
     res.json(newBooking);
@@ -141,12 +143,12 @@ const deleteAllBookings = asyncHandler(async (req, res) => {
 
 const deleteSingleBooking = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { bookingId } = req.body;
+  const { id } = req.params;
   validateMongoDbId(_id);
   try {
     const deletedBooking = await Booking.deleteOne({
       userId: _id,
-      _id: bookingId,
+      _id: id,
     });
     if (!deletedBooking) {
       res.status(404);
@@ -154,7 +156,7 @@ const deleteSingleBooking = asyncHandler(async (req, res) => {
         "Booking not found or you are not authorized to delete this booking"
       );
     }
-    await User.findByIdAndUpdate(_id, { $pull: { bookings: bookingId } });
+    await User.findByIdAndUpdate(_id, { $pull: { bookings: id } });
     res.json({ message: "Booking deleted successfully!", deletedBooking });
   } catch (error) {
     throw new Error(error);
@@ -164,7 +166,7 @@ const deleteSingleBooking = asyncHandler(async (req, res) => {
 const updateBooking = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { bookingId } = req.body;
-  const { checkinDate, checkoutDate, price, hotelId } = req.body;
+  const { checkinDate, checkoutDate, price, hotelId ,hotelName , roomName ,totalPrice} = req.body;
 
   validateMongoDbId(_id);
   validateMongoDbId(bookingId);
@@ -183,6 +185,9 @@ const updateBooking = asyncHandler(async (req, res) => {
     booking.checkoutDate = checkoutDate || booking.checkoutDate;
     booking.price = price || booking.price;
     booking.hotelId = hotelId || booking.hotelId;
+    booking.hotelName = hotelName || booking.hotelName;
+    booking.roomName = roomName || booking.roomName;
+    booking.totalPrice = totalPrice || booking.totalPrice;
 
     const updatedBooking = await booking.save();
     res.json({ message: "Booking updated successfully!", updatedBooking });

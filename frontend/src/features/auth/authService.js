@@ -31,8 +31,7 @@ const createABooking = async (data) => {
 
 const deleteABooking = async (id) => {
   const response = await axios.delete(
-    `${base_url}user/delete-booking`,
-    id,
+    `${base_url}user/delete-booking/${id}`,
     config
   );
   if (response.data) {

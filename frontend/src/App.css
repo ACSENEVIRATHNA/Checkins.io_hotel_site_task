@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-p {
-  font-size: 10px;
-}
 
 .fs-40 {
   font-size: 30px;
@@ -167,4 +164,9 @@ h6 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/*=============== update booking ===============*/
+.update-booking-wrapper{
+  width:400px;
 }
