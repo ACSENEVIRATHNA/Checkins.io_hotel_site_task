@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { createBooking } from "../features/auth/authSlice";
 
 const Room = (props) => {
-  const { item, checkinDate, checkoutDate , hotelId } = props;
+  const { item, checkinDate, checkoutDate , hotelId , hotelName } = props;
   const dispatch = useDispatch();
   const handleReservation = () => {
     dispatch(
@@ -16,6 +16,7 @@ const Room = (props) => {
         checkoutDate: checkoutDate,
         price: item?.price,
         hotelId: hotelId,
+        hotelName: hotelName,
       })
     );
   };
@@ -24,24 +25,24 @@ const Room = (props) => {
       <div className="card-wrapper d-flex flex-column p-2 m-1 col">
         <div className="img-wrapper border">
           <img
-            src="../images/hotel1.png"
+            src={item?.image}
             alt="hotel"
             className="h-100 w-100 object-fit-cover"
           />
         </div>
         <div className="card-details">
-          <h6 className="fs-6">Superior Room, 1 King Bed,NonSmoking</h6>
+          <h6 className="fs-6">{item?.name}</h6>
           <div className="no-of-guest d-flex">
             <IoPeople className="mx-1" />
             <p>2 People</p>
           </div>
           <div className="bed d-flex">
             <FaBed className="mx-1" />
-            <p>Queen Bed and 1 Sofa Bed (or Twin Bed)</p>
+            <p>{item?.beds}</p>
           </div>
           <div className="price-book d-flex justify-content-between algin-items-center">
             <div className="room-price">
-              <h4 className="fs-6">$410</h4>
+              <h4 className="fs-6">${item?.price}</h4>
               <p>Per Day / Room</p>
             </div>
             <button

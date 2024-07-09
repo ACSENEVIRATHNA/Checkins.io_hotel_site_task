@@ -15,8 +15,8 @@ const Home = () => {
                 {hotels &&
                   hotels?.map((item, index) => {
                     return (
-                      <div className="marquee-item d-flex justify-content-center">
-                        <HotelCard key={index} item={item} />
+                      <div key={index} className="marquee-item d-flex justify-content-center">
+                        <HotelCard item={item} />
                       </div>
                     );
                   })}

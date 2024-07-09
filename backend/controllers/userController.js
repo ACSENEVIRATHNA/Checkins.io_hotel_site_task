@@ -94,7 +94,7 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 const createBooking = asyncHandler(async (req, res) => {
-  const { checkinDate, checkoutDate, price, hotelId } = req.body;
+  const { checkinDate, checkoutDate, price, hotelId ,hotelName} = req.body;
   const { _id } = req.user;
 
   validateMongoDbId(_id);
@@ -106,6 +106,7 @@ const createBooking = asyncHandler(async (req, res) => {
       checkoutDate,
       price,
       hotelId,
+      hotelName
     }).save();
     await User.findByIdAndUpdate(_id, { $push: { bookings: newBooking._id } });
     res.json(newBooking);

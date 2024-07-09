@@ -69,11 +69,19 @@ export const deleteAllBookings = createAsyncThunk(
   }
 );
 
-export const getAUser = createAsyncThunk(
-  "auth/get-user",
+export const getAUser = createAsyncThunk("auth/get-user", async (thunkAPI) => {
+  try {
+    return await authService.getUser();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+export const getBookings = createAsyncThunk(
+  "auth/get-bookings",
   async (thunkAPI) => {
     try {
-      return await authService.getUser();
+      return await authService.getUserBookings();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -234,6 +242,24 @@ export const authSlice = createSlice({
         state.customer = action.payload;
       })
       .addCase(getAUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(getBookings.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBookings.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.bookings = action.payload;
+      })
+      .addCase(getBookings.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

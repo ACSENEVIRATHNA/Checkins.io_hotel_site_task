@@ -62,15 +62,18 @@ const delAllBookings = async () => {
 };
 
 const getUser = async () => {
-    const response = await axios.get(
-      `${base_url}user/get-user`,
-      config
-    );
+  const response = await axios.get(`${base_url}user/get-user`, config);
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const getUserBookings = async () => {
+    const response = await axios.get(`${base_url}user/get-bookings`, config);
     if (response.data) {
       return response.data;
     }
   };
-
 
 export const authService = {
   register,
@@ -79,5 +82,6 @@ export const authService = {
   deleteABooking,
   updateABooking,
   delAllBookings,
-  getUser
+  getUser,
+  getUserBookings
 };

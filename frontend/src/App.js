@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -19,7 +20,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/hotels" element={<HotelList/>}/>
               <Route path="/hotel/:id" element={<HotelDetail/>}/>
-              <Route path="/booking" element={<Booking/>}/>
+              <Route path="/bookings" element={<Booking/>}/>
             </Route>
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
