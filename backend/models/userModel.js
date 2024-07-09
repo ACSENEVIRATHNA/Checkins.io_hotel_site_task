@@ -29,6 +29,7 @@ var userSchema = new mongoose.Schema(
     },
     mobile: {
       type: String,
+      unique: true
     },
   },
   {
@@ -42,11 +43,11 @@ userSchema.pre("save", async function (next) {
   }
 
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.passsword, salt);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 userSchema.methods.isPasswordMatched = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.passsword);
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 module.exports = mongoose.model("User", userSchema);

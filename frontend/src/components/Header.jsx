@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Header = () => {
   const [checkinDate, setCheckinDate] = useState(null);
   const [checkoutDate, setCheckoutDate] = useState(null);
+  console.log(checkinDate);
   return (
     <>
       <div className="container-fluid header-wrapper">
@@ -43,8 +44,9 @@ const Header = () => {
                 <DatePicker
                   selected={checkinDate}
                   onChange={(date) => setCheckinDate(date)}
-                  className="filter-inputs"
+                  className="filter-inputs z-10"
                   placeholderText="Add Dates"
+                  popperClassName="date-picker-popper"
                 />
               </span>
               <span className="end-border-line">
@@ -53,8 +55,9 @@ const Header = () => {
                 <DatePicker
                   selected={checkoutDate}
                   onChange={(date) => setCheckoutDate(date)}
-                  className="filter-inputs"
+                  className="filter-inputs z-10"
                   placeholderText="Add Dates"
+                  popperClassName="date-picker-popper"
                 />
               </span>
               <span>

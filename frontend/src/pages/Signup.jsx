@@ -7,11 +7,12 @@ import CustomInput from "../components/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
-// import { registerUser } from "../features/user/userSlice";
+import { registerUser } from "../features/auth/authSlice";
 
 const SignupSchema = yup.object({
-  firstName: yup.string().required("First name is required"),
-  lastName: yup.string().required("Last name is required"),
+  userName: yup.string().required("Username is required"),
+  firstName: yup.string(),
+  lastName: yup.string(),
   email: yup
     .string()
     .email("Email should be valid")
@@ -24,6 +25,7 @@ const Signup = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
+      userName:"",
       firstName: "",
       lastName: "",
       email: "",
@@ -32,7 +34,7 @@ const Signup = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      // dispatch(registerUser(values));
+      dispatch(registerUser(values));
     },
   });
 
@@ -50,6 +52,17 @@ const Signup = () => {
                 onSubmit={formik.handleSubmit}
                 className="d-flex flex-column gap-15"
               >
+                <CustomInput
+                  type="text"
+                  name="userName"
+                  placeholder="User Name"
+                  value={formik.values.userName}
+                  onchange={formik.handleChange("userName")}
+                  onblur={formik.handleBlur("userName")}
+                />
+                <div className="error">
+                  {formik.touched.userName && formik.errors.userName}
+                </div>
                 <CustomInput
                   type="text"
                   name="firstName"

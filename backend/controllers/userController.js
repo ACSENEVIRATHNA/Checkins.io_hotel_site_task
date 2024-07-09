@@ -1,6 +1,8 @@
-const asyncHandler = require("asyncHandler");
+const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Booking = require("../models/bookingModel");
 const { generateToken } = require("../utils/jwtToken");
+const validateMongoDbId = require("../utils/validateMongoDbId");
 
 const createUser = asyncHandler(async (req, res) => {
   const { email } = req.body;
@@ -29,11 +31,44 @@ const loginUser = asyncHandler(async (req, res) => {
       firstName: user?.firstName,
       lastName: user?.lastName,
       email: user?.email,
+      token: generateToken(user?._id),
     });
-  }else{
+  } else {
     res.status(401);
-    throw new Error("Invalid Credentials!")
+    throw new Error("Invalid Credentials!");
   }
 });
 
-module.exports = {createUser , loginUser}
+const createBooking = asyncHandler(async (req, res) => {
+  const { checkinDate, checkoutDate, price, hotelId } = req.body;
+  const { _id } = req.user;
+
+  validateMongoDbId(_id);
+
+  try {
+    let newBooking = await new Booking({
+      userId: _id,
+      checkinDate,
+      checkoutDate,
+      price,
+      hotelId,
+    }).save();
+    res.json(newBooking);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const deleteAllBookings = asyncHandler(async (req, res) => {
+    const { _id } = req.user;
+    validateMongoDbId(_id);
+    try {
+      const user = await User.findOne({ _id });
+      const bookings = await Booking.findOneAndDelete({ userId: user._id });
+      res.json(bookings);
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+module.exports = { createUser, loginUser, createBooking ,deleteAllBookings};

@@ -159,3 +159,8 @@ h6 {
   font-size: 13px;
   color: #777777;
 }
+
+
+.date-picker-popper{
+  z-index: 1000;
+}

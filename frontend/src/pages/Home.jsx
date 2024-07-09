@@ -10,12 +10,12 @@ const Home = () => {
         <div className="row">
           <div className="col-12 top-rated">
             <h3>TOP RATED HOTELS</h3>
-            <div className="marquee-inner-wrapper">
+            <div className="marquee-inner-wrapper z-1">
               <Marquee>
                 {hotels &&
                   hotels?.map((item, index) => {
                     return (
-                      <div className="marquee-item  d-flex justify-content-center">
+                      <div className="marquee-item d-flex justify-content-center">
                         <HotelCard key={index} item={item} />
                       </div>
                     );
