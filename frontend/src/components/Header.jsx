@@ -89,14 +89,13 @@ const Header = ({
                     setLoc(selected);
                   }}
                   options={cities}
-                  // paginate={paginate}
                   minLength={1}
                   labelKey={"name"}
-                  placeholder="Enter Location"
+                  placeholder="Location"
                   className="custom-typeahead"
                 />
               </span>
-              <span className="end-border-line col-2 px-3">
+              <span className="end-border-line col-3 px-2">
                 <h6>Check In</h6>
                 {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
@@ -109,9 +108,8 @@ const Header = ({
                   value={checkinDate ? formatDate(checkinDate) : ""}
                 />
               </span>
-              <span className="end-border-line col-2 px-3">
+              <span className="end-border-line col-3 px-2">
                 <h6>Check Out</h6>
-                {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
                   selected={checkoutDate}
                   onChange={(date) => setCheckoutDate(date)}
@@ -122,18 +120,18 @@ const Header = ({
                   value={checkoutDate ? formatDate(checkoutDate) : ""}
                 />
               </span>
-              <span className="px-3 col end-border-line d-flex flex-column position-relative">
+              <span className="px-2 col align-self-stretch end-border-line d-flex align-items-start position-relative">
                 <h6>Guests</h6>
                 <input
                   type="Number"
-                  className="filter-inputs position-absolute"
-                  placeholder="Add No. of guests"
+                  className="filter-inputs position-absolute bottom-0"
+                  placeholder="Guests"
                   onChange={(e) => {
                     setNoOfGuests(e.target.value);
                   }}
                 />
               </span>
-              <button className="search-btn col d-flex justify-content-end">
+              <button className="search-btn col-1 d-flex justify-content-end">
                 <HiSearchCircle
                   className="fs-40"
                   onClick={() => {

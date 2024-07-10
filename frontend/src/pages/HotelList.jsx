@@ -10,16 +10,16 @@ const HotelList = () => {
   }, [loc]);
   return (
     <>                                                             
-      <div className="container-fluid p-3 list-wrapper">
+      <div className="container-xxl py-3 list-wrapper">
         <div className="row">
-          <div className="col-12 d-flex justify-content-between">
-            <div className="row w-100 row-cols-4">
+          <div className="col-12">
+            <div className="row">
               {hotels &&
                 loc != null &&
                 hotels?.map((item, index) => {
                   if (item?.location?.city === loc[0]) {
                     return (
-                      <div className="col">
+                      <div className="col-6 col-lg-4 col-xl-3">
                         <HotelCard key={index} item={item} />
                       </div>
                     );
@@ -29,7 +29,7 @@ const HotelList = () => {
                 loc == null &&
                 hotels?.map((item, index) => {
                   return (
-                    <div className="col-3">
+                    <div className="col-6 col-lg-4 col-xl-3">
                       <HotelCard key={index} item={item} />
                     </div>
                   );

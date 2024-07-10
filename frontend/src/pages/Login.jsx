@@ -32,7 +32,7 @@ const Login = () => {
     validationSchema: LoginSchema,
     onSubmit: (values) => {
       const lowercaseEmail = values.email.toLowerCase();
-      dispatch(loginUser({...values, email:lowercaseEmail}));
+      dispatch(loginUser({ ...values, email: lowercaseEmail }));
     },
   });
 
@@ -84,10 +84,16 @@ const Login = () => {
                     <button type="submit" className="button border p-1 rounded">
                       Login
                     </button>
-                    <Link to="/signup" className="button border p-1 rounded signup">
+                    <Link
+                      to="/signup"
+                      className="button border p-1 rounded signup"
+                    >
                       Sign Up
                     </Link>
                   </div>
+                </div>
+                <div className="text-center mt-1">
+                  <Link to="/">Back to home</Link>
                 </div>
               </form>
             </div>

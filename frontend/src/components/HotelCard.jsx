@@ -19,7 +19,7 @@ const HotelCard = (props) => {
             className="w-100 h-100 object-fit-cover"
           />
         </div>
-        <div className="card-details h-50 d-flex flex-column">
+        <div className="card-details h-lg-50 h-60 d-flex flex-column">
           <ReactStars
             count={5}
             size={24}
