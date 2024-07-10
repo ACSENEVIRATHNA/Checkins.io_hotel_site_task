@@ -54,7 +54,7 @@ const Header = ({
             <div className="col-3 ">
               <img
                 src="./images/logo.png"
-                className="img-fluid w-50"
+                className="img-fluid w-lg-50"
                 alt="logo"
                 onClick={() => {
                   navigate("/");
@@ -77,10 +77,10 @@ const Header = ({
               )}
             </div>
           </div>
-          <div className="bottom-header d-flex justify-content-center col-12 py-2">
-            <div className="col-2 "></div>
-            <div className="col search-wrapper d-flex align-items-center justify-content-evenly">
-              <span className="end-border-line">
+          <div className="bottom-header d-flex flex-wrap justify-content-center col-12 py-2">
+            {/* <div className="col-2 "></div> */}
+            <div className="col-12 col-md-8 search-wrapper flex-wrap d-flex align-items-center">
+              <span className="end-border-line col">
                 <h6>Location</h6>
                 <Typeahead
                   id="pagination-example"
@@ -122,18 +122,18 @@ const Header = ({
                   value={checkoutDate ? formatDate(checkoutDate) : ""}
                 />
               </span>
-              <span className="px-3">
+              <span className="px-3 col end-border-line d-flex flex-column position-relative">
                 <h6>Guests</h6>
                 <input
                   type="Number"
-                  className="filter-inputs"
+                  className="filter-inputs position-absolute"
                   placeholder="Add No. of guests"
                   onChange={(e) => {
                     setNoOfGuests(e.target.value);
                   }}
                 />
               </span>
-              <button className="search-btn">
+              <button className="search-btn col d-flex justify-content-end">
                 <HiSearchCircle
                   className="fs-40"
                   onClick={() => {

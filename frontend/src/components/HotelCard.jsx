@@ -11,18 +11,15 @@ const HotelCard = (props) => {
   let cardWidth = (window.innerWidth - 50) / 4;
   return (
     <>
-      <div
-        className="card-wrapper d-flex flex-column p-2 w-100 m-1"
-        // style={{ width: cardWidth }}
-      >
+      <div className="card-wrapper d-flex flex-column p-2 w-100 m-1">
         <div className="img-wrapper h-50">
           <img
-            src="./images/hotel1.png"
+            src={item?.images[0]}
             alt="hotel"
             className="w-100 h-100 object-fit-cover"
           />
         </div>
-        <div className="card-details">
+        <div className="card-details h-50 d-flex flex-column">
           <ReactStars
             count={5}
             size={24}
@@ -31,10 +28,10 @@ const HotelCard = (props) => {
             activeColor="#ffd700"
           />
           <h6 className="fs-6">{item?.name}</h6>
-          <p>
+          <span className="mt-auto">
             {item?.location?.city},{item?.location?.country}
-          </p>
-          <div className="facilities d-flex pb-2 gap-2">
+          </span>
+          <div className="facilities d-flex gap-2">
             <div>
               <GrWifi />
             </div>

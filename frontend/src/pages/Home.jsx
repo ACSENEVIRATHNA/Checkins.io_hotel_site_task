@@ -25,7 +25,7 @@ const Home = () => {
   );
   return (
     <>
-      <div className="container-fluid home-wrapper p-5">
+      <div className="container-xxl home-wrapper px-xl-5">
         <div className="row">
           <div className="col-12 top-rated py-3">
             <h3>TOP RATED HOTELS</h3>
@@ -33,7 +33,7 @@ const Home = () => {
               {paginatedHotels.map((item, index) => (
                 <div
                   key={index}
-                  className="marquee-item col-3 d-flex justify-content-center"
+                  className="marquee-item col-6 col-md-3 d-flex justify-content-center"
                 >
                   <HotelCard item={item} />
                 </div>
