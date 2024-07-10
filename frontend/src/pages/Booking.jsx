@@ -9,7 +9,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteForever } from "react-icons/md";
 import { MdFolderDelete } from "react-icons/md";
 import UpdateBooking from "../components/UpdateBooking";
-import { format ,differenceInDays} from "date-fns";
+import { format, differenceInDays } from "date-fns";
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -53,21 +53,26 @@ const Booking = () => {
           {bookingState &&
             bookingState?.map((item, index) => {
               return (
-                <div key={index} className="d-flex align-items-center border rounded m-2 p-2">
+                <div
+                  key={index}
+                  className="d-flex align-items-center border rounded m-2 p-2"
+                >
                   <div className="col-3">
-                    <div className="hotel-name fw-bold">
-                    {item?.hotelName}
-                    </div>
-                    <div className="room-name">
-                      {item?.roomName}
-                    </div>
+                    <div className="hotel-name fw-bold">{item?.hotelName}</div>
+                    <div className="room-name">{item?.roomName}</div>
                   </div>
                   <div className=" text-center col-3 d-flex flex-column align-items-center">
-                    <div className="checkin">CheckIn :&nbsp;{formatDate(item?.checkinDate)}</div>
-                    <div className="checkout">CheckOut :&nbsp;{formatDate(item?.checkoutDate)}</div>
+                    <div className="checkin">
+                      CheckIn :&nbsp;{formatDate(item?.checkinDate)}
+                    </div>
+                    <div className="checkout">
+                      CheckOut :&nbsp;{formatDate(item?.checkoutDate)}
+                    </div>
                   </div>
-                  
-                  <div className="justify-content-center col-3 d-flex align-items-center">${item?.totalPrice}</div>
+
+                  <div className="justify-content-center col-3 d-flex align-items-center">
+                    ${item?.totalPrice}
+                  </div>
                   <div className="col-3 d-flex justify-content-evenly align-items-center">
                     <CiEdit
                       className="fs-2"
@@ -82,18 +87,17 @@ const Booking = () => {
               );
             })}
         </div>
-        <div
-          className="d-flex col-12 justify-content-end mt-3"
-          onClick={() => handleDeleteAll()}
-        >
-          <div className="d-flex justify-content-center  gap-2 align-items-center rounded border px-2 py-1">
+        <div className="d-flex col-12 justify-content-end mt-3">
+          <button
+            className="d-flex justify-content-center  gap-2 align-items-center rounded border px-2 py-1"
+            onClick={() => handleDeleteAll()}
+          >
             <MdFolderDelete className="fs-4" />
             <span>Delete All</span>
-          </div>
+          </button>
         </div>
         {update && <UpdateBooking item={item} setUpdate={setUpdate} />}
       </div>
-      
     </>
   );
 };

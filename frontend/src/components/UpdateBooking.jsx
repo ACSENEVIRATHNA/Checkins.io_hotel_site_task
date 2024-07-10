@@ -4,7 +4,7 @@ import { IoMdSave } from "react-icons/io";
 import { format, differenceInDays } from "date-fns";
 import { useDispatch } from "react-redux";
 import { getBookings, updateBooking } from "../features/auth/authSlice";
-import { toast } from "react-toastify";
+import { BiCalendarEdit } from "react-icons/bi";
 
 const UpdateBooking = (props) => {
   const { item, setUpdate } = props;
@@ -18,7 +18,7 @@ const UpdateBooking = (props) => {
     setTotal(item?.price * noOfDays);
   }, [checkin, checkout]);
 
-  const handleUpate = () => {
+  const handleUpdate = () => {
     dispatch(
       updateBooking({
         bookingId: item?._id,
@@ -34,42 +34,52 @@ const UpdateBooking = (props) => {
   return (
     <>
       <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-absolute">
+        <h4>Updates Dates</h4>
         <div className="hotel-name fw-bold">{item?.hotelName}</div>
         <div className="room-name fw-semibold">{item?.roomName}</div>
         <div className="dates d-flex">
           <div className="checkin">
             <span>Check In Date</span>
-            <DatePicker
-              selected={checkin}
-              onChange={(date) => setCheckin(date)}
-              className="filter-inputs z-10"
-              placeholderText="Add Dates"
-              popperClassName="date-picker-popper"
-              minDate={new Date()}
-            />
+            <div className="edit-date gap-2 d-flex align-items-center">
+              <BiCalendarEdit className="fs-4" />
+              <DatePicker
+                selected={checkin}
+                onChange={(date) => setCheckin(date)}
+                className="filter-inputs z-10"
+                placeholderText="Add Dates"
+                popperClassName="date-picker-popper"
+                minDate={new Date()}
+              />
+            </div>
           </div>
           <div className="checkout">
             <span>Check Out Date</span>
-            <DatePicker
-              selected={checkout}
-              onChange={(date) => setCheckout(date)}
-              className="filter-inputs z-10"
-              placeholderText="Add Dates"
-              popperClassName="date-picker-popper"
-              minDate={checkin}
-            />
+            <div className="edit-date gap-2 d-flex align-items-center">
+              <BiCalendarEdit className="fs-4" />
+              <DatePicker
+                selected={checkout}
+                onChange={(date) => setCheckout(date)}
+                className="filter-inputs z-10"
+                placeholderText="Add Dates"
+                popperClassName="date-picker-popper"
+                minDate={checkin}
+              />
+            </div>
           </div>
         </div>
         <div className="price-perday">Price per Day :&nbsp;${item?.price}</div>
         <div className="d-flex justify-content-between">
           <div className="total-price fw-bold">Total :&nbsp;${total}</div>
-          <button
-            className="border px-1 rounded gap-1 d-flex align-items-center"
-            onClick={() => handleUpate()}
-          >
-            <IoMdSave className="fs-5" />
-            <span>Save</span>
-          </button>
+          <div className="actions d-flex gap-2">
+            <button className="cancel border-0 bg-transparent" onClick={()=>{setUpdate(false)}}>Cancel</button>
+            <button
+              className="border px-1 rounded gap-1 d-flex align-items-center"
+              onClick={() => handleUpdate()}
+            >
+              <IoMdSave className="fs-5" />
+              <span>Save</span>
+            </button>
+          </div>
         </div>
       </div>
     </>
