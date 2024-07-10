@@ -7,10 +7,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoLogOut } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
-import { format ,differenceInDays} from "date-fns";
+import { format, differenceInDays } from "date-fns";
+import { hotels } from "../utils/Data";
+import { Typeahead } from "react-bootstrap-typeahead";
 
+const Header = ({
+  setCheckinDate,
+  setCheckoutDate,
+  checkinDate,
+  checkoutDate,
+  setLoc,
+  loc,
+  noOfGuests,
+  setNoOfGuests,
+}) => {
+  let cities = [];
+  for (let i = 0; i < hotels.length; i++) {
+    const city = hotels[i]?.location?.city;
+    cities.push(city);
+  }
 
-const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate }) => {
+  cities = [...new Set(cities)];
+  console.log(cities);
+
   const userState = useSelector((state) => state?.auth?.user);
   const navigate = useNavigate();
 
@@ -22,7 +41,9 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
   const formatDate = (date) => {
     return format(new Date(date), "MMMM dd, yyyy");
   };
-
+  useEffect(() => {
+    console.log(noOfGuests);
+  }, [noOfGuests]);
   return (
     <>
       <div className="container-fluid header-wrapper">
@@ -55,14 +76,22 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
             </div>
           </div>
           <div className="bottom-header d-flex justify-content-center col-12 py-2">
-            {/* <div className="col-2 "></div> */}
-            <div className="col-8 search-wrapper d-flex align-items-center justify-content-evenly">
+            <div className="col-2 "></div>
+            <div className="col search-wrapper d-flex align-items-center justify-content-evenly">
               <span className="end-border-line">
                 <h6>Location</h6>
-                <input
-                  type="text"
-                  className="filter-inputs me-2"
-                  placeholder="Which City do you prefer?"
+                <Typeahead
+                  id="pagination-example"
+                  onPaginate={() => console.log("Results paginated")}
+                  onChange={(selected) => {
+                    setLoc(selected);
+                  }}
+                  options={cities}
+                  // paginate={paginate}
+                  minLength={1}
+                  labelKey={"name"}
+                  placeholder="Enter Location"
+                  className="custom-typeahead"
                 />
               </span>
               <span className="end-border-line col-2 px-3">
@@ -75,7 +104,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   placeholderText="Add Dates"
                   popperClassName="date-picker-popper"
                   minDate={new Date()}
-                  value={checkinDate ? formatDate(checkinDate): ""}
+                  value={checkinDate ? formatDate(checkinDate) : ""}
                 />
               </span>
               <span className="end-border-line col-2 px-3">
@@ -88,7 +117,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   placeholderText="Add Dates"
                   popperClassName="date-picker-popper"
                   minDate={checkinDate || new Date()}
-                  value={checkoutDate ? formatDate(checkoutDate): ""}
+                  value={checkoutDate ? formatDate(checkoutDate) : ""}
                 />
               </span>
               <span className="px-3">
@@ -97,14 +126,27 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   type="Number"
                   className="filter-inputs"
                   placeholder="Add No. of guests"
+                  onChange={(e) => {
+                    setNoOfGuests(e.target.value);
+                  }}
                 />
               </span>
               <button className="search-btn">
-                <HiSearchCircle className="fs-40" />
+                <HiSearchCircle
+                  className="fs-40"
+                  onClick={() => {
+                    navigate("/hotels");
+                  }}
+                />
               </button>
             </div>
             <div className="col-2  d-flex align-items-center justify-content-center">
-              <MdManageAccounts className="fs-1" onClick={()=>{navigate("/bookings")}}/>
+              <MdManageAccounts
+                className="fs-1"
+                onClick={() => {
+                  navigate("/bookings");
+                }}
+              />
             </div>
           </div>
         </div>

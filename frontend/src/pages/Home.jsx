@@ -10,12 +10,15 @@ const Home = () => {
         <div className="row">
           <div className="col-12 top-rated">
             <h3>TOP RATED HOTELS</h3>
-            <div className="marquee-inner-wrapper z-1">
-              <Marquee>
+            <div className="marquee-inner-wrapper border z-1 row">
+              <Marquee autoFill={true} pauseOnHover={true}>
                 {hotels &&
                   hotels?.map((item, index) => {
                     return (
-                      <div key={index} className="marquee-item d-flex justify-content-center">
+                      <div
+                        key={index}
+                        className="marquee-item d-flex justify-content-center"
+                      >
                         <HotelCard item={item} />
                       </div>
                     );

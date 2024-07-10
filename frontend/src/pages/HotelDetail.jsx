@@ -71,7 +71,7 @@ const HotelDetail = () => {
             <h4>{hotels[id]?.name}</h4>
             <div className="loc d-flex">
               <IoLocationSharp />
-              <p>{hotels[id]?.location}</p>
+              <p>{hotels[id]?.location?.city},{hotels[id]?.location?.country}</p>
             </div>
           </div>
           <div className="about border rounded my-2 p-2">
