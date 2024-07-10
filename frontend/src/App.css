@@ -157,18 +157,17 @@ h6 {
 
 
 .date-picker-popper{
+  position: absolute;
   z-index: 1000;
 }
 
-.imgzoom img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 /*=============== update booking ===============*/
 .update-booking-wrapper{
   width:400px;
+  top: 50%;
+  left:30%
+  
 }
 
 /*=============== update booking ends here===============*/

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Zoom from "react-img-zoom-gdn";
 import { hotels } from "../utils/Data";
 import { IoLocationSharp } from "react-icons/io5";
@@ -11,37 +11,58 @@ const HotelDetail = () => {
   const id = hotelId - 1;
   const { checkinDate, checkoutDate } = useOutletContext();
   const [img, setImg] = useState(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const containerRef = useRef(null);
+
+  const updateDimensions = () => {
+    if (containerRef.current) {
+      const { offsetWidth, offsetHeight } = containerRef.current;
+      setDimensions({
+        width: offsetWidth,
+        height: offsetHeight,
+      });
+    }
+  };
+
   useEffect(() => {
+    updateDimensions();
     setImg(hotels[id]?.images[1]);
   }, []);
-  console.log(hotels[id]);
+  console.log(dimensions);
   return (
     <>
       <div className="container-fluid p-3 hotel-wrapper">
         <div className="image-container col-12 row m-2">
-          <div className=" col-6 p-2 border h-100 rounded overflow-hidden zoom-container">
+          <div
+            className="col-6 border d-flex algin-items-ccenter h-100 rounded overflow-hidden zoom-container"
+            ref={containerRef}
+          >
             {img && (
               <Zoom
                 key={img}
                 img={img}
                 zoomScale={2}
-                width={500}
-                height={300}
+                width={dimensions.width + 50}
+                height={(dimensions.width / 3) * 2}
                 className="imgzoom"
               />
             )}
           </div>
           <div className="col-6 p-2">
             <div className="row row-cols-3">
-              <div className="col">
-                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[1]} alt="hotel1" />
-              </div>
-              <div className="col">
-                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[2]} alt="hotel" />
-              </div>
-              <div className="col">
-                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[3]} alt="hotel" />
-              </div>
+              {hotels[id]?.images &&
+                hotels[id]?.images?.map((item, index) => {
+                  return (
+                    <div className="col" key={index}>
+                      <img
+                        className="img-fluid border rounded p-1"
+                        src={item}
+                        alt="hotel-img"
+                        onClick={() => setImg(item)}
+                      />
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

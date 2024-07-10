@@ -4,9 +4,10 @@ import { IoMdSave } from "react-icons/io";
 import { format, differenceInDays } from "date-fns";
 import { useDispatch } from "react-redux";
 import { getBookings, updateBooking } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
 
 const UpdateBooking = (props) => {
-  const { item } = props;
+  const { item, setUpdate } = props;
   const dispatch = useDispatch();
   const [checkin, setCheckin] = useState(item?.checkinDate);
   const [checkout, setCheckout] = useState(item?.checkoutDate);
@@ -27,11 +28,12 @@ const UpdateBooking = (props) => {
       })
     ).then(() => {
       dispatch(getBookings());
+      setUpdate(false);
     });
   };
   return (
     <>
-      <div className="update-booking-wrapper border rounded p-2">
+      <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-absolute">
         <div className="hotel-name fw-bold">{item?.hotelName}</div>
         <div className="room-name fw-semibold">{item?.roomName}</div>
         <div className="dates d-flex">
@@ -54,7 +56,7 @@ const UpdateBooking = (props) => {
               className="filter-inputs z-10"
               placeholderText="Add Dates"
               popperClassName="date-picker-popper"
-              minDate={new Date()}
+              minDate={checkin}
             />
           </div>
         </div>

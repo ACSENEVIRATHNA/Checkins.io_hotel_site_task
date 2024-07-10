@@ -56,7 +56,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
           </div>
           <div className="bottom-header d-flex justify-content-center col-12 py-2">
             {/* <div className="col-2 "></div> */}
-            <div className="col  search-wrapper d-flex align-items-center justify-content-evenly">
+            <div className="col-8 search-wrapper d-flex align-items-center justify-content-evenly">
               <span className="end-border-line">
                 <h6>Location</h6>
                 <input
@@ -65,7 +65,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   placeholder="Which City do you prefer?"
                 />
               </span>
-              <span className="end-border-line px-3">
+              <span className="end-border-line col-2 px-3">
                 <h6>Check In</h6>
                 {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
@@ -78,7 +78,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   value={checkinDate ? formatDate(checkinDate): ""}
                 />
               </span>
-              <span className="end-border-line px-3">
+              <span className="end-border-line col-2 px-3">
                 <h6>Check Out</h6>
                 {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
@@ -87,7 +87,7 @@ const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate })
                   className="filter-inputs z-10"
                   placeholderText="Add Dates"
                   popperClassName="date-picker-popper"
-                  minDate={new Date()}
+                  minDate={checkinDate || new Date()}
                   value={checkoutDate ? formatDate(checkoutDate): ""}
                 />
               </span>

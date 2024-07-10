@@ -41,7 +41,8 @@ const Booking = () => {
 
   return (
     <>
-      <div className="booking-wrapper">
+      <div className="booking-wrapper position-relative">
+        <h4 className="ms-2">Bookings</h4>
         <div className="col-12 d-flex border rounded mx-2 mt-2 p-2">
           <div className="col-3 text-center">Name</div>
           <div className="col-3 text-center">Dates</div>
@@ -52,7 +53,7 @@ const Booking = () => {
           {bookingState &&
             bookingState?.map((item, index) => {
               return (
-                <div key={index} className="d-flex border rounded m-2 p-2">
+                <div key={index} className="d-flex align-items-center border rounded m-2 p-2">
                   <div className="col-3">
                     <div className="hotel-name fw-bold">
                     {item?.hotelName}
@@ -61,12 +62,12 @@ const Booking = () => {
                       {item?.roomName}
                     </div>
                   </div>
-                  <div className=" text-center col-3">
+                  <div className=" text-center col-3 d-flex flex-column align-items-center">
                     <div className="checkin">CheckIn :&nbsp;{formatDate(item?.checkinDate)}</div>
                     <div className="checkout">CheckOut :&nbsp;{formatDate(item?.checkoutDate)}</div>
                   </div>
                   
-                  <div className="text-center col-3">${item?.totalPrice}</div>
+                  <div className="justify-content-center col-3 d-flex align-items-center">${item?.totalPrice}</div>
                   <div className="col-3 d-flex justify-content-evenly align-items-center">
                     <CiEdit
                       className="fs-2"
@@ -90,8 +91,9 @@ const Booking = () => {
             <span>Delete All</span>
           </div>
         </div>
+        {update && <UpdateBooking item={item} setUpdate={setUpdate} />}
       </div>
-      {update && <UpdateBooking item={item} />}
+      
     </>
   );
 };
