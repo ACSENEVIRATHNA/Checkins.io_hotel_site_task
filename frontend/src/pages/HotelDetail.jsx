@@ -9,7 +9,7 @@ import LoginWarning from "../components/LoginWarning";
 const HotelDetail = () => {
   const location = useLocation();
   const hotelId = location.pathname.split("/")[2];
-  const [loginWarning , setLoginWarning] = useState(false);
+  const [loginWarning, setLoginWarning] = useState(false);
   const id = hotelId - 1;
   const { checkinDate, checkoutDate, noOfGuests } = useOutletContext();
   const [img, setImg] = useState(null);
@@ -28,6 +28,9 @@ const HotelDetail = () => {
 
   useEffect(() => {
     updateDimensions();
+  }, [window.innerWidth]);
+
+  useEffect(() => {
     setImg(hotels[id]?.images[0]);
   }, []);
   console.log(dimensions);
@@ -36,7 +39,7 @@ const HotelDetail = () => {
       <div className="container-fluid p-3 hotel-wrapper">
         <div className="image-container col-12 row m-2">
           <div
-            className="col-6 border d-flex algin-items-ccenter h-100 rounded overflow-hidden zoom-container"
+            className="col-12 col-md-6 border d-flex px-0 algin-items-ccenter h-100 rounded overflow-hidden zoom-container"
             ref={containerRef}
           >
             {img && (
@@ -44,13 +47,13 @@ const HotelDetail = () => {
                 key={img}
                 img={img}
                 zoomScale={2}
-                width={dimensions.width + 50}
+                width={dimensions.width}
                 height={(dimensions.width / 3) * 2}
                 className="imgzoom"
               />
             )}
           </div>
-          <div className="col-6 p-2">
+          <div className="col-12 col-md-6 p-2">
             <div className="row row-cols-3">
               {hotels[id]?.images &&
                 hotels[id]?.images?.map((item, index) => {
@@ -96,7 +99,7 @@ const HotelDetail = () => {
           </div>
           <div className="rooms my-2 position-relative">
             <h4>Rooms</h4>
-            <div className="row row-cols-4">
+            <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4">
               {hotels[id].rooms?.map((item, index) => {
                 if (item?.count >= noOfGuests) {
                   return (
