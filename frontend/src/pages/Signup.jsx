@@ -25,7 +25,7 @@ const Signup = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      userName:"",
+      userName: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -34,7 +34,8 @@ const Signup = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: (values) => {
-      dispatch(registerUser(values));
+      const lowercaseEmail = values.email.toLowerCase();
+      dispatch(registerUser({ ...values, email: lowercaseEmail }));
     },
   });
 
@@ -121,7 +122,10 @@ const Signup = () => {
                 </div>
                 <div>
                   <div className="mt-3 d-flex flex-column justify-content-center gap-15 align-items-center">
-                    <button type="submit" className="button border rounded p-2 signup">
+                    <button
+                      type="submit"
+                      className="button border rounded p-2 signup"
+                    >
                       Sign Up
                     </button>
                     <Link to="/login">Cancel</Link>

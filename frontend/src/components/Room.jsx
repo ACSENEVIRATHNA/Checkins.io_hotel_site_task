@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { IoPeople } from "react-icons/io5";
 import { FaBed } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { createBooking } from "../features/auth/authSlice";
 import { format, differenceInDays } from "date-fns";
 import { toast } from "react-toastify";
 
 const Room = (props) => {
-  const { item, checkinDate, checkoutDate, hotelId, hotelName } = props;
+  const { item, checkinDate, checkoutDate, hotelId, hotelName , setLoginWarning } = props;
   const dispatch = useDispatch();
+  const userState = useSelector((state)=>state?.auth?.user);
   const totalPrice =
     item?.price *
     differenceInDays(new Date(checkoutDate), new Date(checkinDate));
 
   const handleReservation = () => {
-    if (checkinDate === null || checkoutDate === null) {
+    if(!userState){
+      setLoginWarning(true);
+    }
+    else if (checkinDate === null || checkoutDate === null) {
       toast.error("Please Select Check In and Check Out dates!");
     } else if (checkinDate > checkoutDate) {
       toast.error("Check out day should be at least a day after check in date!")

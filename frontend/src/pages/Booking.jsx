@@ -10,6 +10,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { MdFolderDelete } from "react-icons/md";
 import UpdateBooking from "../components/UpdateBooking";
 import { format, differenceInDays } from "date-fns";
+import LoginWarning from "../components/LoginWarning";
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Booking = () => {
   const [item, setItem] = useState(null);
   const bookingState = useSelector((state) => state?.auth?.bookings);
   const loadingState = useSelector((state) => state?.auth?.isLoading);
+  const userState = useSelector((state)=>state?.auth?.user);
   useEffect(() => {
     dispatch(getBookings());
   }, [dispatch]);
@@ -97,6 +99,7 @@ const Booking = () => {
           </button>
         </div>
         {update && <UpdateBooking item={item} setUpdate={setUpdate} />}
+        {!userState && <LoginWarning/>}
       </div>
     </>
   );

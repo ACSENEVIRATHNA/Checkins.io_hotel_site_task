@@ -10,6 +10,7 @@ import { MdManageAccounts } from "react-icons/md";
 import { format, differenceInDays } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
+import { toast } from "react-toastify";
 
 const Header = ({
   setCheckinDate,
@@ -41,12 +42,13 @@ const Header = ({
   const formatDate = (date) => {
     return format(new Date(date), "MMMM dd, yyyy");
   };
+
   useEffect(() => {
     console.log(noOfGuests);
   }, [noOfGuests]);
   return (
     <>
-      <div className="container-fluid header-wrapper">
+      <div className="container-fluid header-wrapper container-xxl">
         <div className="row">
           <div className="upper-header col-12 d-flex">
             <div className="col-3 ">
@@ -141,12 +143,14 @@ const Header = ({
               </button>
             </div>
             <div className="col-2  d-flex align-items-center justify-content-center">
-              <MdManageAccounts
-                className="fs-1"
-                onClick={() => {
-                  navigate("/bookings");
-                }}
-              />
+              {userState && (
+                <MdManageAccounts
+                  className="fs-1"
+                  onClick={() => {
+                    navigate("/bookings");
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>

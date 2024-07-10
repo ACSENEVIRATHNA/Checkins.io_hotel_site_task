@@ -31,7 +31,8 @@ const Login = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-      dispatch(loginUser(values));
+      const lowercaseEmail = values.email.toLowerCase();
+      dispatch(loginUser({...values, email:lowercaseEmail}));
     },
   });
 

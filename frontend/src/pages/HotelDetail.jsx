@@ -4,12 +4,14 @@ import { hotels } from "../utils/Data";
 import { IoLocationSharp } from "react-icons/io5";
 import Room from "../components/Room";
 import { useLocation, useOutletContext } from "react-router-dom";
+import LoginWarning from "../components/LoginWarning";
 
 const HotelDetail = () => {
   const location = useLocation();
   const hotelId = location.pathname.split("/")[2];
+  const [loginWarning , setLoginWarning] = useState(false);
   const id = hotelId - 1;
-  const { checkinDate, checkoutDate } = useOutletContext();
+  const { checkinDate, checkoutDate, noOfGuests } = useOutletContext();
   const [img, setImg] = useState(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const containerRef = useRef(null);
@@ -26,7 +28,7 @@ const HotelDetail = () => {
 
   useEffect(() => {
     updateDimensions();
-    setImg(hotels[id]?.images[1]);
+    setImg(hotels[id]?.images[0]);
   }, []);
   console.log(dimensions);
   return (
@@ -71,7 +73,9 @@ const HotelDetail = () => {
             <h4>{hotels[id]?.name}</h4>
             <div className="loc d-flex">
               <IoLocationSharp />
-              <p>{hotels[id]?.location?.city},{hotels[id]?.location?.country}</p>
+              <p>
+                {hotels[id]?.location?.city},{hotels[id]?.location?.country}
+              </p>
             </div>
           </div>
           <div className="about border rounded my-2 p-2">
@@ -90,23 +94,27 @@ const HotelDetail = () => {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-          <div className="rooms my-2">
+          <div className="rooms my-2 position-relative">
             <h4>Rooms</h4>
             <div className="row row-cols-4">
               {hotels[id].rooms?.map((item, index) => {
-                return (
-                  <div key={index} className="col">
-                    <Room
-                      item={item}
-                      hotelId={hotels[id].id}
-                      checkinDate={checkinDate}
-                      checkoutDate={checkoutDate}
-                      hotelName={hotels[id].name}
-                    />
-                  </div>
-                );
+                if (item?.count >= noOfGuests) {
+                  return (
+                    <div key={index} className="col">
+                      <Room
+                        item={item}
+                        hotelId={hotels[id].id}
+                        checkinDate={checkinDate}
+                        checkoutDate={checkoutDate}
+                        hotelName={hotels[id].name}
+                        setLoginWarning={setLoginWarning}
+                      />
+                    </div>
+                  );
+                }
               })}
             </div>
+            {loginWarning && <LoginWarning />}
           </div>
         </div>
       </div>

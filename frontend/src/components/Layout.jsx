@@ -23,8 +23,8 @@ const Layout = () => {
           noOfGuests={noOfGuests}
           setNoOfGuests={setNoOfGuests}
         />
-        <div className="content">
-          <Outlet context={{ checkinDate, checkoutDate, loc }} />
+        <div className="content container-xxl">
+          <Outlet context={{ checkinDate, checkoutDate, loc ,noOfGuests }} />
         </div>
         <Footer />
         <ToastContainer
