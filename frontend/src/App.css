@@ -170,3 +170,11 @@ h6 {
 .update-booking-wrapper{
   width:400px;
 }
+
+/*=============== update booking ends here===============*/
+
+/*=============== room card===============*/
+.room-price > p{
+  font-size: 10px;
+  color: #b0b3b5;
+}

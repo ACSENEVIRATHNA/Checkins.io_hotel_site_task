@@ -43,6 +43,7 @@ const UpdateBooking = (props) => {
               className="filter-inputs z-10"
               placeholderText="Add Dates"
               popperClassName="date-picker-popper"
+              minDate={new Date()}
             />
           </div>
           <div className="checkout">
@@ -53,6 +54,7 @@ const UpdateBooking = (props) => {
               className="filter-inputs z-10"
               placeholderText="Add Dates"
               popperClassName="date-picker-popper"
+              minDate={new Date()}
             />
           </div>
         </div>

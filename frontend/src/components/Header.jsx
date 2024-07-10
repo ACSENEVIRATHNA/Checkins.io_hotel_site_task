@@ -7,14 +7,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoLogOut } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
+import { format ,differenceInDays} from "date-fns";
 
-const Header = ({ setCheckinDate, setCheckoutDate }) => {
+
+const Header = ({ setCheckinDate, setCheckoutDate , checkinDate, checkoutDate }) => {
   const userState = useSelector((state) => state?.auth?.user);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
     window.location.reload();
+  };
+
+  const formatDate = (date) => {
+    return format(new Date(date), "MMMM dd, yyyy");
   };
 
   return (
@@ -63,22 +69,26 @@ const Header = ({ setCheckinDate, setCheckoutDate }) => {
                 <h6>Check In</h6>
                 {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
-                  selected={null}
+                  selected={checkinDate}
                   onChange={(date) => setCheckinDate(date)}
                   className="filter-inputs z-10"
                   placeholderText="Add Dates"
                   popperClassName="date-picker-popper"
+                  minDate={new Date()}
+                  value={checkinDate ? formatDate(checkinDate): ""}
                 />
               </span>
               <span className="end-border-line px-3">
                 <h6>Check Out</h6>
                 {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
-                  selected={null}
+                  selected={checkoutDate}
                   onChange={(date) => setCheckoutDate(date)}
                   className="filter-inputs z-10"
                   placeholderText="Add Dates"
                   popperClassName="date-picker-popper"
+                  minDate={new Date()}
+                  value={checkoutDate ? formatDate(checkoutDate): ""}
                 />
               </span>
               <span className="px-3">

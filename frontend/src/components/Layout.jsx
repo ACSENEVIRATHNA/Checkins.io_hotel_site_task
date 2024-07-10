@@ -11,7 +11,7 @@ const Layout = () => {
   return (
     <>
       <div className="layout">
-        <Header setCheckinDate={setCheckinDate} setCheckoutDate={setCheckoutDate} />
+        <Header setCheckinDate={setCheckinDate} setCheckoutDate={setCheckoutDate} checkinDate={checkinDate} checkoutDate={checkoutDate}/>
         <div className="content">
           <Outlet context={{ checkinDate, checkoutDate }}/>
         </div>

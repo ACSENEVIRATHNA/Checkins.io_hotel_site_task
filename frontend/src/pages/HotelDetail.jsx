@@ -12,7 +12,7 @@ const HotelDetail = () => {
   const { checkinDate, checkoutDate } = useOutletContext();
   const [img, setImg] = useState(null);
   useEffect(() => {
-    setImg(hotels[id]?.images[0]);
+    setImg(hotels[id]?.images[1]);
   }, []);
   console.log(hotels[id]);
   return (
@@ -31,16 +31,16 @@ const HotelDetail = () => {
               />
             )}
           </div>
-          <div className="col-6 p-2 border rounded">
+          <div className="col-6 p-2">
             <div className="row row-cols-3">
               <div className="col">
-                <img className="img-fluid" src={hotels[id]?.images[1]} alt="hotel1" />
+                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[1]} alt="hotel1" />
               </div>
               <div className="col">
-                <img className="img-fluid" src={hotels[id]?.images[2]} alt="hotel" />
+                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[2]} alt="hotel" />
               </div>
               <div className="col">
-                <img className="img-fluid" src={hotels[id]?.images[3]} alt="hotel" />
+                <img className="img-fluid border rounded p-1" src={hotels[id]?.images[3]} alt="hotel" />
               </div>
             </div>
           </div>
