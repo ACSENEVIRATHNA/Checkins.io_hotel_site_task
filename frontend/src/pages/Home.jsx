@@ -35,7 +35,7 @@ const Home = () => {
               {paginatedHotels.map((item, index) => (
                 <div
                   key={index}
-                  className="marquee-item col-6 col-md-3 d-flex justify-content-center"
+                  className="col-6 col-md-3"
                 >
                   <HotelCard item={item} />
                 </div>

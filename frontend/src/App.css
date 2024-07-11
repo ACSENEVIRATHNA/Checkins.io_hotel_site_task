@@ -199,10 +199,6 @@ h6 {
   overflow-x: auto;
 }
 
-.marquee-item {
-  box-sizing: border-box;
-}
-
 .login-warning-wrapper {
   top: 70%;
   left: 35%;

@@ -19,7 +19,7 @@ const HotelList = () => {
                 hotels?.map((item, index) => {
                   if (item?.location?.city === loc[0]) {
                     return (
-                      <div className="col-6 col-lg-4 col-xl-3">
+                      <div className="col-6 col-lg-4 col-xl-3 p-0">
                         <HotelCard key={index} item={item} />
                       </div>
                     );
