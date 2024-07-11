@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FaUser } from "react-icons/fa";
 import { HiSearchCircle } from "react-icons/hi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdManageAccounts } from "react-icons/md";
-import { format, differenceInDays } from "date-fns";
+import { format } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
-import { toast } from "react-toastify";
-import { Tooltip, Popover } from "bootstrap";
+import { Popover } from "bootstrap";
 
 const Header = ({
   setCheckinDate,
@@ -19,7 +18,6 @@ const Header = ({
   checkinDate,
   checkoutDate,
   setLoc,
-  loc,
   noOfGuests,
   setNoOfGuests,
 }) => {
