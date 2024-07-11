@@ -173,7 +173,7 @@ const Header = ({
                   value={checkoutDate ? formatDate(checkoutDate) : ""}
                 />
               </span>
-              <span className="px-2 col align-self-stretch end-border-line d-flex align-items-start position-relative">
+              <span className="px-2 col align-self-stretch d-flex align-items-start position-relative">
                 <h6>Guests</h6>
                 <input
                   type="Number"
@@ -184,7 +184,7 @@ const Header = ({
                   }}
                 />
               </span>
-              <button className="search-btn col-1 d-flex justify-content-end">
+              <button className="search-btn col-1 d-flex justify-content-center">
                 <HiSearchCircle
                   className="fs-40"
                   onClick={() => {
