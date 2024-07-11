@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { hotels, cities } from "../utils/Data";
 import Marquee from "react-fast-marquee";
 import HotelCard from "../components/HotelCard";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
 
@@ -74,6 +76,7 @@ const Home = () => {
                       <div
                         key={index}
                         className="p-2 city-wrapper position-relative"
+                        onClick={()=>navigate("/hotels")}
                       >
                         <img
                           src={item?.img}

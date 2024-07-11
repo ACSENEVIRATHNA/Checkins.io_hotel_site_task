@@ -36,10 +36,10 @@ const HotelDetail = () => {
   console.log(dimensions);
   return (
     <>
-      <div className="container-fluid p-3 hotel-wrapper">
-        <div className="image-container col-12 row m-2">
+      <div className="container-fluid hotel-wrapper border">
+        <div className="image-container row border">
           <div
-            className="col-12 col-md-6 border d-flex px-0 algin-items-ccenter h-100 rounded overflow-hidden zoom-container"
+            className="col-md-6  d-flex px-0 algin-items-ccenter h-100 overflow-hidden zoom-container"
             ref={containerRef}
           >
             {img && (
@@ -53,7 +53,7 @@ const HotelDetail = () => {
               />
             )}
           </div>
-          <div className="col-12 col-md-6 p-2">
+          <div className="col-md-6 p-2">
             <div className="row row-cols-3">
               {hotels[id]?.images &&
                 hotels[id]?.images?.map((item, index) => {
@@ -71,7 +71,7 @@ const HotelDetail = () => {
             </div>
           </div>
         </div>
-        <div className="detail-container m-2">
+        <div className="detail-container row">
           <div className="hotel-name border rounded my-2 p-2">
             <h4>{hotels[id]?.name}</h4>
             <div className="loc d-flex">
@@ -103,7 +103,7 @@ const HotelDetail = () => {
               {hotels[id].rooms?.map((item, index) => {
                 if (item?.count >= noOfGuests) {
                   return (
-                    <div key={index} className="col">
+                    <div key={index} className="col p-0">
                       <Room
                         item={item}
                         hotelId={hotels[id].id}

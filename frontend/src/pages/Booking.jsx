@@ -64,11 +64,11 @@ const Booking = () => {
                     <div className="room-name">{item?.roomName}</div>
                   </div>
                   <div className=" text-center pe-3 col-12 col-md-3 d-flex flex-md-column align-items-center justify-content-between">
-                    <div className="checkin d-flex flex-column flex-md-row">
+                    <div className="checkin d-flex align-items-start flex-column flex-md-row">
                       <span>CheckIn :</span>
                       <b>{formatDate(item?.checkinDate)}</b>
                     </div>
-                    <div className="checkout d-flex flex-column flex-md-row">
+                    <div className="checkout d-flex flex-column align-items-start flex-md-row">
                       <span>CheckOut :</span>
                       <b>{formatDate(item?.checkoutDate)}</b>
                     </div>

@@ -29,7 +29,7 @@ const HotelList = () => {
                 loc == null &&
                 hotels?.map((item, index) => {
                   return (
-                    <div className="col-6 col-lg-4 col-xl-3">
+                    <div className="col-6 col-lg-4 col-xl-3 p-0">
                       <HotelCard key={index} item={item} />
                     </div>
                   );

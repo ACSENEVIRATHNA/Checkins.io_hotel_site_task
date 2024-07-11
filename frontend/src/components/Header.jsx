@@ -65,9 +65,9 @@ const Header = ({
   }, [noOfGuests]);
   return (
     <>
-      <div className="container-fluid header-wrapper container-xxl">
+      <div className="container-fluid header-wrapper container-xxl pt-3">
         <div className="row">
-          <div className="upper-header col-12 d-flex">
+          <div className="upper-header col-12 d-flex justify-content-between">
             <div className="col-4 col-sm-3">
               <img
                 src="../images/logo.png"
@@ -78,7 +78,6 @@ const Header = ({
                 }}
               />
             </div>
-            <div className="col-5"></div>
             <div className="col-4 d-flex  align-items-center justify-content-end px-4">
               {!userState && (
                 <span
