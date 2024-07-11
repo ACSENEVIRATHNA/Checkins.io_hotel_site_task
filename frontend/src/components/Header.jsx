@@ -177,7 +177,7 @@ const Header = ({
                 <h6>Guests</h6>
                 <input
                   type="Number"
-                  className="filter-inputs position-absolute bottom-0"
+                  className="filter-inputs position-absolute bottom-0 w-50"
                   placeholder="Guests"
                   onChange={(e) => {
                     setNoOfGuests(e.target.value);

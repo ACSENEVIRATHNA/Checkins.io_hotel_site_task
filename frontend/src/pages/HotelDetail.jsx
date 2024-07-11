@@ -36,8 +36,8 @@ const HotelDetail = () => {
   console.log(dimensions);
   return (
     <>
-      <div className="container-fluid hotel-wrapper border">
-        <div className="image-container row border">
+      <div className="container-fluid hotel-wrapper">
+        <div className="image-container row">
           <div
             className="col-md-6  d-flex px-0 algin-items-ccenter h-100 overflow-hidden zoom-container"
             ref={containerRef}
