@@ -34,7 +34,7 @@ const UpdateBooking = (props) => {
   };
   return (
     <>
-      <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-fixed start-25 top-50">
+      <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-fixed shadow">
         <div className="d-flex align-items-center gap-2 border-bottom border-black-subtle">
           <PiGearFill className="fs-4" />
           <span>

@@ -117,7 +117,7 @@ const HotelDetail = () => {
                 }
               })}
             </div>
-            {loginWarning && <LoginWarning />}
+            {loginWarning && <LoginWarning message={'make a reservation!'}/>}
           </div>
         </div>
       </div>

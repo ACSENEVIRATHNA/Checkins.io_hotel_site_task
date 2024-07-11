@@ -1,13 +1,11 @@
 import React from "react";
-// import BreadCrumb from "../components/BreadCrumb";
-// import Meta from "../components/Meta";
 import { Link } from "react-router-dom";
-// import Container from "./Container";
 import CustomInput from "../components/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
 
 const SignupSchema = yup.object({
   userName: yup.string().required("Username is required"),
@@ -22,6 +20,7 @@ const SignupSchema = yup.object({
 });
 
 const Signup = () => {
+  const userState = useSelector((state) => state?.auth);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -35,18 +34,24 @@ const Signup = () => {
     validationSchema: SignupSchema,
     onSubmit: (values) => {
       const lowercaseEmail = values.email.toLowerCase();
-      dispatch(registerUser({ ...values, email: lowercaseEmail }));
+      dispatch(registerUser({ ...values, email: lowercaseEmail })).then(() => {
+        if (userState?.isError === true) {
+          toast.error(
+            "Something dont match! Please try again with proper values!"
+          );
+        } else if (userState?.isSuccess === true) {
+          toast.success("Sign Up Successfully!");
+        }
+      });
     },
   });
 
   return (
     <>
-      {/* <Meta title={"Signup"} />
-      <BreadCrumb title="Signup" /> */}
       <div class1="signup-wrapper home-wrapper-2 py-5">
         <div className="row">
-          <div className="col-12 d-flex justify-content-center">
-            <div className="auth-card">
+          <div className="col-12 vh-100 d-flex justify-content-center align-items-center">
+            <div className="auth-card border shadow">
               <h3 className="text-center mb-3">Sign Up</h3>
               <form
                 action=""
@@ -128,7 +133,9 @@ const Signup = () => {
                     >
                       Sign Up
                     </button>
-                    <Link to="/login">Cancel</Link>
+                    <Link className="link-offset-2" to="/login">
+                      Cancel
+                    </Link>
                   </div>
                 </div>
               </form>

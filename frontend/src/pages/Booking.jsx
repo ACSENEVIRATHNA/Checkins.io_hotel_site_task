@@ -75,7 +75,9 @@ const Booking = () => {
                   </div>
                   <div className="justify-content-md-center col-12 col-md-3 d-flex align-items-center">
                     <b className="d-md-none">Total :&nbsp;</b>
-                    <span><b className="fs-5">$&nbsp;{item?.totalPrice}</b></span>
+                    <span>
+                      <b className="fs-5">$&nbsp;{item?.totalPrice}</b>
+                    </span>
                   </div>
                   <div className="col-3 m-2 d-flex justify-content-evenly align-items-center position-absolute bottom-0 end-0">
                     <RiEdit2Fill
@@ -101,7 +103,7 @@ const Booking = () => {
           </button>
         </div>
         {update && <UpdateBooking item={item} setUpdate={setUpdate} />}
-        {!userState && <LoginWarning />}
+        {!userState && <LoginWarning message={"manage your bookings!"} />}
       </div>
     </>
   );

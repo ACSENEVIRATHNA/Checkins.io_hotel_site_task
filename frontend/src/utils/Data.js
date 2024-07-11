@@ -13,6 +13,7 @@ export const hotels = [
       city: "Los Angeles",
       country: "CA",
     },
+    rating: 3,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$592",
@@ -77,6 +78,7 @@ export const hotels = [
       city: "Los Angeles",
       country: "FL",
     },
+    rating: 5,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$4400",
@@ -143,6 +145,7 @@ export const hotels = [
       city: "Miami Beach",
       country: "US",
     },
+    rating: 4,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$2700",
@@ -206,6 +209,7 @@ export const hotels = [
       city: " Wailea",
       country: "US",
     },
+    rating: 2,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$17390",
@@ -280,6 +284,7 @@ export const hotels = [
       city: "Amsterdam",
       country: "Netherland",
     },
+    rating: 1,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$14860",
@@ -343,6 +348,7 @@ export const hotels = [
       city:"Las Vegas",
       country: "US",
     },
+    rating: 5,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$3700",
@@ -406,6 +412,7 @@ export const hotels = [
       city:"London",
       country: "England",
     },
+    rating: 3,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$9286",
@@ -469,6 +476,7 @@ export const hotels = [
       city:"London",
       country: "England",
     },
+    rating: 4,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$3185",
@@ -532,6 +540,7 @@ export const hotels = [
       city:"London",
       country: "England",
     },
+    rating: 1,
     loc_link:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
     price: "$7455",
@@ -595,6 +604,7 @@ export const hotels = [
         city:" New York",
         country: "US",
       },
+      rating: 2,
       loc_link:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
       price: "$6196",
@@ -659,6 +669,7 @@ export const hotels = [
         city:"London",
         country: "England",
       },
+      rating: 5,
       loc_link:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13238.955709801097!2d-118.3849602!3d33.947842299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b6d6f0f8d99b%3A0x2e42619821fb8a5b!2sFour%20Points%20by%20Sheraton%20Los%20Angeles%20International%20Airport!5e0!3m2!1sen!2slk!4v1720539703085!5m2!1sen!2slk",
       price: "$3081",

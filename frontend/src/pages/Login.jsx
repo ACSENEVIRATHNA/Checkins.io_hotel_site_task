@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-// import BreadCrumb from "../components/BreadCrumb";
-// import Meta from "../components/Meta";
 import { Link } from "react-router-dom";
-// import Container from "./Container";
 import CustomInput from "../components/CustomInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { getAUser, loginUser } from "../features/auth/authSlice";
+import { loginUser } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginSchema = yup.object({
@@ -44,12 +41,10 @@ const Login = () => {
 
   return (
     <>
-      {/* <Meta title={"Login"} />
-      <BreadCrumb title="Login" /> */}
       <div class1="login-wrapper home-wrapper-2 py-5">
         <div className="row">
-          <div className="col-12 d-flex justify-content-center">
-            <div className="auth-card">
+          <div className="col-12 shadow vh-100 d-flex align-items-center justify-content-center">
+            <div className="auth-card border shadow">
               <h3 className="text-center mb-3">Login</h3>
               <form
                 action=""
@@ -93,7 +88,7 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="text-center mt-1">
-                  <Link to="/">Back to home</Link>
+                  <Link className='link-offset-2' to="/">Back to home</Link>
                 </div>
               </form>
             </div>
