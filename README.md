@@ -79,9 +79,3 @@ To run this project locally, follow these steps:
 - JWT (JSON Web Tokens)
 - bcrypt
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-Make sure to replace `your-username` with your actual GitHub username and add the appropriate MongoDB connection string and JWT secret in the `.env` file. You can also customize this README further based on any additional features or instructions specific to your project.
