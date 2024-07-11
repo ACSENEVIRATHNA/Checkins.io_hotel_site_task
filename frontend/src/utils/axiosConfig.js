@@ -1,4 +1,4 @@
-export const base_url = "http://localhost:4000/api/";
+export const base_url = "https://chama-computers.onrender.com/api/";
 
 const getTokenFromLocalStorage = localStorage.getItem("customer")
   ? JSON.parse(localStorage.getItem("customer"))
