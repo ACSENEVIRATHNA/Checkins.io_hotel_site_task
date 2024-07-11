@@ -1,5 +1,3 @@
-
-```markdown
 # Hotel Booking Site
 
 This is a hotel booking web application developed using the MERN stack (MongoDB, Express.js, React, Node.js). Users can sign up, log in, and make reservations, as well as manage their bookings by viewing, deleting, and updating them. JWT tokens are used for authentication, and bcrypt is used to hash passwords.
