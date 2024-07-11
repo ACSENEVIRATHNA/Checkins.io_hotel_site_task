@@ -5,6 +5,7 @@ import { format, differenceInDays } from "date-fns";
 import { useDispatch } from "react-redux";
 import { getBookings, updateBooking } from "../features/auth/authSlice";
 import { BiCalendarEdit } from "react-icons/bi";
+import { PiGearFill } from "react-icons/pi";
 
 const UpdateBooking = (props) => {
   const { item, setUpdate } = props;
@@ -33,12 +34,17 @@ const UpdateBooking = (props) => {
   };
   return (
     <>
-      <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-absolute">
-        <h4>Updates Dates</h4>
-        <div className="hotel-name fw-bold">{item?.hotelName}</div>
+      <div className="update-booking-wrapper shadow border rounded p-2 bg-light position-fixed start-25 top-50">
+        <div className="d-flex align-items-center gap-2 border-bottom border-black-subtle">
+          <PiGearFill className="fs-4" />
+          <span>
+            <h4>Updates Dates</h4>
+          </span>
+        </div>
+        <div className="hotel-name fw-bold fs-5">{item?.hotelName}</div>
         <div className="room-name fw-semibold">{item?.roomName}</div>
-        <div className="dates d-flex">
-          <div className="checkin">
+        <div className="dates d-flex flex-wrap justify-content-between">
+          <div className="checkin ">
             <span>Check In Date</span>
             <div className="edit-date gap-2 d-flex align-items-center">
               <BiCalendarEdit className="fs-4" />
@@ -68,10 +74,17 @@ const UpdateBooking = (props) => {
           </div>
         </div>
         <div className="price-perday">Price per Day :&nbsp;${item?.price}</div>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between fs-5">
           <div className="total-price fw-bold">Total :&nbsp;${total}</div>
           <div className="actions d-flex gap-2">
-            <button className="cancel border-0 bg-transparent" onClick={()=>{setUpdate(false)}}>Cancel</button>
+            <button
+              className="cancel border-0 bg-transparent"
+              onClick={() => {
+                setUpdate(false);
+              }}
+            >
+              Cancel
+            </button>
             <button
               className="border px-1 rounded gap-1 d-flex align-items-center"
               onClick={() => handleUpdate()}

@@ -53,7 +53,7 @@ const Header = ({
           <div className="upper-header col-12 d-flex">
             <div className="col-3 ">
               <img
-                src="./images/logo.png"
+                src="../images/logo.png"
                 className="img-fluid w-lg-50"
                 alt="logo"
                 onClick={() => {
