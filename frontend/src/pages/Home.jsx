@@ -25,9 +25,9 @@ const Home = () => {
   );
   return (
     <>
-      <div className="container-xxl home-wrapper px-xl-5">
+      <div className="container-xxl home-wrapper">
         <div className="row">
-          <div className="col-12 top-rated py-3">
+          <div className="col-12  top-rated p-0">
             <h3>TOP RATED HOTELS</h3>
             <div className="marquee-inner-wrapper">
               {paginatedHotels.map((item, index) => (

@@ -5,12 +5,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IoLogOut } from "react-icons/io5";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdManageAccounts } from "react-icons/md";
 import { format, differenceInDays } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { toast } from "react-toastify";
+import { Tooltip, Popover } from "bootstrap";
 
 const Header = ({
   setCheckinDate,
@@ -44,6 +45,22 @@ const Header = ({
   };
 
   useEffect(() => {
+    const popoverTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="popover"]'
+    );
+    const popoverList = Array.from(popoverTriggerList).map(
+      (popoverTriggerEl) =>
+        new Popover(popoverTriggerEl, {
+          trigger: "hover",
+        })
+    );
+
+    return () => {
+      popoverList.forEach((popover) => popover.dispose());
+    };
+  }, []);
+
+  useEffect(() => {
     console.log(noOfGuests);
   }, [noOfGuests]);
   return (
@@ -51,10 +68,10 @@ const Header = ({
       <div className="container-fluid header-wrapper container-xxl">
         <div className="row">
           <div className="upper-header col-12 d-flex">
-            <div className="col-3 ">
+            <div className="col-4 col-sm-3">
               <img
                 src="../images/logo.png"
-                className="img-fluid w-lg-50"
+                className="img-fluid w-lg-50 logo"
                 alt="logo"
                 onClick={() => {
                   navigate("/");
@@ -64,21 +81,61 @@ const Header = ({
             <div className="col-5"></div>
             <div className="col-4 d-flex  align-items-center justify-content-end px-4">
               {!userState && (
-                <Link to="/login" className="login-btn">
-                  <FaUser />
-                  Log in Or Register
-                </Link>
+                <span
+                  className="d-inlin-block"
+                  tabindex="0"
+                  data-bs-toggle="popover"
+                  data-bs-trigger="hover"
+                  data-bs-content="Log In"
+                >
+                  <button
+                    onClick={() => {
+                      navigate("/login");
+                    }}
+                    className="border-0 bg-transparent"
+                  >
+                    <FaUser className="fs-2" />
+                  </button>
+                </span>
               )}
               {userState && (
-                <button onClick={handleLogout} className="login-btn">
-                  <IoLogOut />
-                  Logout
-                </button>
+                <div className="d-flex gap-2">
+                  <span
+                    className="d-inlin-block"
+                    tabindex="0"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="Bookings"
+                  >
+                    <button
+                      type="button"
+                      className="border-0 bg-transparent"
+                      onClick={() => {
+                        navigate("/bookings");
+                      }}
+                    >
+                      <MdManageAccounts className="fs-1" />
+                    </button>
+                  </span>
+                  <span
+                    className="d-inlin-block"
+                    tabindex="0"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover"
+                    data-bs-content="Logout"
+                  >
+                    <button
+                      onClick={handleLogout}
+                      className="border-0 bg-transparent"
+                    >
+                      <RiLogoutCircleRLine className="fs-1" />
+                    </button>
+                  </span>
+                </div>
               )}
             </div>
           </div>
           <div className="bottom-header d-flex flex-wrap justify-content-center col-12 py-2">
-            {/* <div className="col-2 "></div> */}
             <div className="col-12 col-md-8 search-wrapper flex-wrap d-flex align-items-center">
               <span className="end-border-line col">
                 <h6>Location</h6>
@@ -97,7 +154,6 @@ const Header = ({
               </span>
               <span className="end-border-line col-3 px-2">
                 <h6>Check In</h6>
-                {/* <input className="filter-inputs" placeholder="Add Dates" /> */}
                 <DatePicker
                   selected={checkinDate}
                   onChange={(date) => setCheckinDate(date)}
@@ -139,16 +195,6 @@ const Header = ({
                   }}
                 />
               </button>
-            </div>
-            <div className="col-2  d-flex align-items-center justify-content-center">
-              {userState && (
-                <MdManageAccounts
-                  className="fs-1"
-                  onClick={() => {
-                    navigate("/bookings");
-                  }}
-                />
-              )}
             </div>
           </div>
         </div>

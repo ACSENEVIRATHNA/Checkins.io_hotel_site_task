@@ -11,7 +11,7 @@ const HotelCard = (props) => {
   let cardWidth = (window.innerWidth - 50) / 4;
   return (
     <>
-      <div className="card-wrapper d-flex flex-column p-2 w-100 m-1">
+      <div className="card-wrapper d-flex flex-column p-2 w-100 mx-1">
         <div className="img-wrapper h-50">
           <img
             src={item?.images[0]}
@@ -48,7 +48,7 @@ const HotelCard = (props) => {
           <div className="price-book d-flex justify-content-between algin-items-center">
             <h4 className="fs-6">{item?.price}</h4>
             <Link to={"/hotel/" + item?.id} className="booking-btn">
-              Book Now
+              Book
             </Link>
           </div>
         </div>

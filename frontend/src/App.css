@@ -52,18 +52,6 @@ h6 {
 }
 /* ======================= Header =============================*/
 
-.login-btn {
-  border: 2px black solid;
-  border-radius: 10px;
-  padding: 5px;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: black;
-  font-size: 14px;
-}
-
 .search-wrapper {
   padding: 15px;
   background-color: #e3e4e6;
@@ -224,6 +212,10 @@ h6 {
 @media (max-width: 425px){
   .update-booking-wrapper{
     width: 100%;
+  }
+  .city-wrapper {
+    width: 200px;
+    height: 150px;
   }
   
 }

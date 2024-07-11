@@ -71,7 +71,7 @@ export const hotels = [
       "../images/2.5.png",
       "../images/2.6.png",
     ],
-    name: "SLS Hotel, a Luxury Collection Hotel, Beverly Hills",
+    name: "SLS Hotel, a Luxury Collection Hotel",
     location: {
       add: "465 S La Cienega Blvd,",
       city: "Los Angeles",
