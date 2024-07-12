@@ -120,7 +120,7 @@ checkins.io is a hotel booking website where users can sign up, log in, create b
 - Thorough input validation and error handling.
 
 ## Screenshots
-Here is an image of the site:
+Here is an overview of the site:
 
 ![Site Screenshot](Images/overview.jpeg)
 ```
