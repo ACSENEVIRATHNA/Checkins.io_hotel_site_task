@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { Popover } from "bootstrap";
-import { logout } from "../features/auth/authSlice";
+import { getBookings, logout } from "../features/auth/authSlice";
 
 const Header = ({
   setCheckinDate,
@@ -37,8 +37,6 @@ const Header = ({
 
   const handleLogout = () => {
     dispatch(logout());
-    
-    // window.location.reload();
   };
 
   const formatDate = (date) => {
@@ -61,9 +59,9 @@ const Header = ({
     };
   }, []);
 
-  useEffect(() => {
-    console.log(noOfGuests);
-  }, [noOfGuests]);
+  // useEffect(() => {
+  //   dispatch(getBookings());
+  // }, []);
   return (
     <>
       <div className="container-fluid header-wrapper container-xxl pt-3">
@@ -111,6 +109,7 @@ const Header = ({
                       type="button"
                       className="border-0 bg-transparent"
                       onClick={() => {
+                        dispatch(getBookings());
                         navigate("/bookings");
                       }}
                     >

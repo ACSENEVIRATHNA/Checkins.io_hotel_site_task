@@ -122,5 +122,5 @@ checkins.io is a hotel booking website where users can sign up, log in, create b
 ## Screenshots
 Here is an image of the site:
 
-![Site Screenshot](Images/overview.png)
+![Site Screenshot](Images/overview.jpeg)
 ```
