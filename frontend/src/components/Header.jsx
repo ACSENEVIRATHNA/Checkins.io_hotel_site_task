@@ -6,12 +6,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-import { MdManageAccounts } from "react-icons/md";
 import { format } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { Popover } from "bootstrap";
 import { getBookings, logout } from "../features/auth/authSlice";
+import { GiWhiteBook } from "react-icons/gi";
+
 
 const Header = ({
   setCheckinDate,
@@ -59,9 +60,6 @@ const Header = ({
     };
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getBookings());
-  // }, []);
   return (
     <>
       <div className="container-fluid header-wrapper container-xxl pt-3">
@@ -113,7 +111,7 @@ const Header = ({
                         navigate("/bookings");
                       }}
                     >
-                      <MdManageAccounts className="fs-1" />
+                      <GiWhiteBook className="fs-1" />
                     </button>
                   </span>
                   <span
