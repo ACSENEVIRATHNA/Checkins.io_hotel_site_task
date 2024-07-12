@@ -8,7 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 app.use(cors({
-    origin: 'https://chama-computers-da1h.onrender.com/',
+    origin: 'https://chama-computers-da1h.onrender.com',
     credentials: true,
   }));
 
