@@ -12,7 +12,14 @@ const register = async (userData) => {
 };
 
 const login = async (userData) => {
-  const response = await axios.post(`${base_url}user/login`, userData);
+  const response = await axios.post(`${base_url}user/login`, userData , {withCredentials: true});
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const logoutUSer = async () => {
+  const response = await axios.post(`${base_url}user/logout` , config , {withCredentials:true});
   if (response.data) {
     return response.data;
   }
@@ -82,5 +89,6 @@ export const authService = {
   updateABooking,
   delAllBookings,
   getUser,
-  getUserBookings
+  getUserBookings,
+  logoutUSer
 };

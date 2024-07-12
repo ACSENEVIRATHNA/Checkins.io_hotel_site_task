@@ -88,6 +88,14 @@ export const getBookings = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk("auth/logout", async (thunkAPI) => {
+  try {
+    return await authService.logoutUSer();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
 const getCustomerfromLocalStorage = localStorage.getItem("customer")
   ? JSON.parse(localStorage.getItem("customer"))
   : null;
@@ -260,6 +268,29 @@ export const authSlice = createSlice({
         state.bookings = action.payload;
       })
       .addCase(getBookings.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = "Something Went Wrong!";
+        if (state.isError === true) {
+          toast.error(state.message);
+        }
+      })
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        if (state.isSuccess === true) {
+          toast.success("Log out Successfully");
+          localStorage.clear();
+          state.user = null;
+          state.isSuccess = false;
+        }
+      })
+      .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

@@ -22,5 +22,6 @@ router.delete("/delete-booking/:id", authMiddleware, deleteSingleBooking);
 router.put("/update-booking", authMiddleware, updateBooking);
 router.put("/update-booking", authMiddleware, updateBooking);
 router.get("/get-user", authMiddleware, getUser);
+router.post("/logout", logoutUser);
 
 module.exports = router;

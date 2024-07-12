@@ -4,13 +4,14 @@ import { HiSearchCircle } from "react-icons/hi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdManageAccounts } from "react-icons/md";
 import { format } from "date-fns";
 import { hotels } from "../utils/Data";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { Popover } from "bootstrap";
+import { logout } from "../features/auth/authSlice";
 
 const Header = ({
   setCheckinDate,
@@ -21,6 +22,7 @@ const Header = ({
   noOfGuests,
   setNoOfGuests,
 }) => {
+  const dispatch = useDispatch();
   let cities = [];
   for (let i = 0; i < hotels.length; i++) {
     const city = hotels[i]?.location?.city;
@@ -34,8 +36,9 @@ const Header = ({
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.clear();
-    window.location.reload();
+    dispatch(logout());
+    
+    // window.location.reload();
   };
 
   const formatDate = (date) => {

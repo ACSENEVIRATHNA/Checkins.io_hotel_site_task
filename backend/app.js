@@ -7,7 +7,10 @@ const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }));
 
 app.use(bodyPasrser.json());
 app.use(bodyPasrser.urlencoded({ extended: false }));
